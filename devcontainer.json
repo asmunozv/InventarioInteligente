@@ -1,0 +1,27 @@
+{
+  "name": "Apache y MySQL",
+
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+
+  "forwardPorts": [
+    80,
+    3306
+  ],
+
+  "portsAttributes": {
+    "80": {
+      "label": "Apache Web Server",
+      "onAutoForward": "openBrowser"
+    },
+    "3306": {
+      "label": "MySQL"
+    }
+  },
+
+  "postStartCommand": "service mysql start && service apache2 start",
+
+  "remoteUser": "root"
+}
